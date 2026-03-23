@@ -56,10 +56,15 @@ Using Sentinel’s charting capabilities, I visualized the attack "spike," which
 SOC Response Actions
 
 Validate source IP using threat intelligence
+
 Block malicious IP via firewall or Conditional Access
+
 Enforce account lockout and password reset
+
 Enable MFA if not already configured
+
 Investigate for additional lateral movement or persistence
+
 
 Key Takeaways
 
