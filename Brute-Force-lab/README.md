@@ -53,8 +53,18 @@ Using Sentinel’s charting capabilities, I visualized the attack "spike," which
 ![Microsoft Defender Alerts](./Assets/Screenshot%202026-03-23%20172240.png)
 ![Incident Details](./Assets/Screenshot_20260322_205304.png)
 
+SOC Response Actions
+
+Validate source IP using threat intelligence
+Block malicious IP via firewall or Conditional Access
+Enforce account lockout and password reset
+Enable MFA if not already configured
+Investigate for additional lateral movement or persistence
+
 Key Takeaways
 
 Troubleshooting Mastery: Resolved service hangs and registry conflicts to ensure the attack surface was correctly configured for testing.
+
 The "Lockout" Metric: Proved that account lockouts are a vital defense layer and a high-fidelity indicator for SIEM alerting.
+
 End-to-End Visibility: Gained experience in the full incident lifecycle—from reconnaissance and attack to detection and remediation.
