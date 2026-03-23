@@ -15,11 +15,11 @@ Project Modules
 
 Each folder below contains a specific lab module, including the attack methodology, KQL queries, and proof-of-concept screenshots.
 
-Module 01: Brute-Force-Lab / Credential Access (Brute Force)
+Brute-Force-Lab / Credential Access (Brute Force)
 
 Focus: Identity security and high-volume authentication failures. Tools: Hydra (Kali Linux).
 
-Module 02: Persistence-Workbook-Lab/ Persistence & Monitoring
+Persistence-Workbook-Lab/ Persistence & Monitoring
 
 Focus: Registry/Task persistence and real-time health dashboards. Feature: Custom Sentinel Workbook with conditional formatting.
 
