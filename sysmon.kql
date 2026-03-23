@@ -1,0 +1,20 @@
+WindowsEvent
+| where Provider has "Sysmon"
+| where TimeGenerated > ago(1h)
+| extend EventDataParsed = parse_xml(EventData).DataItem.EventData.Data
+| mv-expand bagexpansion=array EventDataParsed
+| evaluate bag_unpack(EventDataParsed)
+| extend 
+    Key = tostring(column_ifexists('@Name', '')),
+    Value = tostring(column_ifexists('#text', ''))
+| evaluate pivot(Key, any(Value), TimeGenerated, Computer, EventID)
+| project 
+    TimeGenerated, 
+    Computer, 
+    EventID,
+    UtcTime = column_ifexists("UtcTime", ""),
+    Image = column_ifexists("Image", ""),
+    CommandLine = column_ifexists("CommandLine", ""),
+    ParentImage = column_ifexists("ParentImage", ""),
+    ParentCommandLine = column_ifexists("ParentCommandLine", "")
+| take 20
