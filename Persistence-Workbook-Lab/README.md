@@ -1,10 +1,9 @@
 # MS-Sentinel-SOC-Lab
 Endpoint Persistence & Monitoring Dashboard
 
-Endpoint Persistence & Monitoring Dashboard
-
 Description
 This module focuses on detecting common Persistence techniques (MITRE ATT&CK T1547.001) and visualizing endpoint health through a custom Microsoft Sentinel Workbook. The goal was to move beyond simple log collection and create an actionable, "at-a-glance" dashboard for a SOC analyst.
+<img width="1767" height="855" alt="image" src="https://github.com/user-attachments/assets/638185d4-9da4-4f47-b27f-31582bf74b62" />
 
 Attack Simulation
 To test the detection pipeline, I manually simulated an attacker gaining persistence on the Windows endpoint:
@@ -12,6 +11,8 @@ To test the detection pipeline, I manually simulated an attacker gaining persist
 Registry Run Key: Created a suspicious entry in HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
 
 Telemetry Validation: Verified that Sysmon Event ID 13 (RegistryValueSet) captured the modification and successfully streamed it to the Log Analytics Workspace.
+<img width="1426" height="544" alt="image" src="https://github.com/user-attachments/assets/4ca6f7bc-e860-4ee8-8e55-e5c344d10c77" />
+
 
 Detection Logic (KQL)
 I used the following KQL query to monitor heartbeats and calculate a real-time "Online/Offline" status.
@@ -21,8 +22,11 @@ Heartbeat
 | summarize LastHeartbeat = max(TimeGenerated) by Computer, ComputerIP, OSType
 | extend Status = iff(LastHeartbeat > ago(5m), "Online", "Offline")
 | project Computer, ComputerIP, OSType, LastHeartbeat, Status
+<img width="1437" height="568" alt="image" src="https://github.com/user-attachments/assets/8d2acf3b-6d81-48c6-a079-8e1001deeb90" />
+
 
 Visual Engineering (The JSON Mapping Fix)
+
 A key challenge was getting the Workbook's conditional formatting to recognize the "Online/Offline" status. While the KQL was correct, the UI renderer was not applying the colors to the correct column.
 
 The Issue: The "Thresholds" renderer was looking for a non-existent or mismatched column, resulting in no color status.
@@ -33,6 +37,8 @@ Original Code: "columnMatch": "Colors"
 Corrected Code: "columnMatch": "Status"
 
 Result: By aligning the JSON logic with the KQL output, the "Thresholds" renderer successfully identified the Status column, enabling the green/red visual indicators.
+<img width="1513" height="521" alt="image" src="https://github.com/user-attachments/assets/d4566035-8f55-4ab7-96cf-4068eade869b" />
+
 
 Results
 Process Timeline Spike
