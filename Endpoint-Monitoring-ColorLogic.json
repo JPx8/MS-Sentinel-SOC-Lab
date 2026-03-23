@@ -1,0 +1,13 @@
+{
+    "type": 3,
+    "name": "Endpoint Connectivity ",
+    "content": {
+        "version": "KqlItem/1.0",
+        "query": "Heartbeat\n| summarize LastHeartbeat = max(TimeGenerated) by Computer, ComputerIP, OSType\n| extend Status = iff(LastHeartbeat > ago(5m), \"ONLINE\", \"OFFLINE\")",
+        "size": 0,
+        "timeContext": {
+            "durationMs": 86400000
+        },
+…        }
+    }
+}
