@@ -27,7 +27,7 @@ Outcome: Verified connectivity using Test-NetConnection with a successful TcpTes
 Attack Method: Used Hydra on Kali Linux to attempt an RDP credential stuffing attack against the Windows Administrator account.
 Defense Triggered: The Windows Account Lockout Policy successfully identified the brute-force attempt.
 Evidence: The attack resulted in a "System Error 5: Access Denied" on the Windows host, confirming the local security policy effectively neutralized the threat.
-![Hydra Attack](./Assets/Screenshot_20260322_203748.png)
+![Analytics Rule Setup](./Assets/Screenshot_20260322_203605.png)
 
 3. SIEM Detection & Analytics
 
@@ -45,7 +45,7 @@ SecurityEvent
 | where FailureCount >= 10
 | project TimeGenerated, IpAddress, Computer, FailureCount
 ![KQL Log Query](./Assets/Screenshot_20260322_204143.png)
-![Analytics Rule Setup](./Assets/Screenshot_20260322_203605.png)
+![Hydra Attack](./Assets/Screenshot_20260322_203748.png)
 
 Visualizing the Attack
 Using Sentinel’s charting capabilities, I visualized the attack "spike," which clearly identifies the volume and frequency of the Hydra brute-force attempt. This visual data is critical for SOC analysts to distinguish between a single forgotten password and an active automated attack.
