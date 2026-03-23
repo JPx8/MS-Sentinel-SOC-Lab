@@ -50,7 +50,7 @@ SecurityEvent
 
 Visualizing the Attack
 Using Sentinel’s charting capabilities, I visualized the attack "spike," which clearly identifies the volume and frequency of the Hydra brute-force attempt. This visual data is critical for SOC analysts to distinguish between a single forgotten password and an active automated attack.
-!(./Brute-Force-Lab/Assets/Screenshot%202026-03-23%20172240.png)
+![Microsoft Defender Alerts](./Brute-Force-Lab/Assets/Screenshot%202026-03-23%20172240.png)
 ![Incident Details](./Assets/Screenshot_20260322_205304.png)
 
 Key Takeaways
