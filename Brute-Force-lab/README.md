@@ -34,6 +34,7 @@ Evidence: The attack resulted in a "System Error 5: Access Denied" on the Window
 Log Ingestion: Confirmed ingestion of SecurityEvent logs into Azure.
 Custom Analytics Rule: Authored a logic rule to monitor for specific Event IDs (4625 - Logon Failure).
 Alert Trigger: Successfully generated a Sentinel Incident that mapped the attacker's IP and the target host, providing a centralized dashboard for investigation.
+![KQL Log Query](./Assets/Screenshot_20260322_204143.png)
 
 KQL Analytics Logic
 The following query was used to create the automated detection rule in Microsoft Sentinel:
@@ -44,12 +45,11 @@ SecurityEvent
 | summarize FailureCount = count() by IpAddress, Computer, bin(TimeGenerated, 5m)
 | where FailureCount >= 10
 | project TimeGenerated, IpAddress, Computer, FailureCount
-![KQL Log Query](./Assets/Screenshot_20260322_204143.png)
+![Sentinel Incident Dashboard](./Assets/Screenshot_20260322_204933.png)
 ![Hydra Attack](./Assets/Screenshot_20260322_203748.png)
 
 Visualizing the Attack
 Using Sentinel’s charting capabilities, I visualized the attack "spike," which clearly identifies the volume and frequency of the Hydra brute-force attempt. This visual data is critical for SOC analysts to distinguish between a single forgotten password and an active automated attack.
-![Sentinel Incident Dashboard](./Assets/Screenshot_20260322_204933.png)
 ![Incident Details](./Assets/Screenshot_20260322_205304.png)
 
 Key Takeaways
