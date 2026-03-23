@@ -45,7 +45,7 @@ SecurityEvent
 | summarize FailureCount = count() by IpAddress, Computer, bin(TimeGenerated, 5m)
 | where FailureCount >= 10
 | project TimeGenerated, IpAddress, Computer, FailureCount
-![Microsoft Defender Alerts](./Assets/Screenshot%202026-03-23%20172240.png)
+![Microsoft Alerts](./Assets/Screenshot_20260322_204933.png)
 ![Hydra Attack](./Assets/Screenshot_20260322_203748.png)
 
 Visualizing the Attack
